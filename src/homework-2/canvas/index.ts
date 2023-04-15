@@ -1,11 +1,7 @@
 const canvas: HTMLCanvasElement = document.createElement('canvas');
 const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;
-const uploadedImage = document.getElementById(
-  'uploadedImage'
-) as HTMLImageElement;
-const transformedImage = document.getElementById(
-  'transformedImage'
-) as HTMLImageElement;
+const uploadedImage = document.getElementById('uploadedImage') as HTMLImageElement;
+const transformedImage = document.getElementById('transformedImage') as HTMLImageElement;
 
 function uploadImage(fileList: FileList): void {
   const file: File = fileList.item(0)!;
@@ -41,12 +37,7 @@ function reset(): void {
 }
 
 function effectHanlder(
-  effectCallback: (
-    array: Uint8ClampedArray,
-    r: number,
-    g: number,
-    b: number
-  ) => void
+  effectCallback: (array: Uint8ClampedArray, r: number, g: number, b: number) => void
 ): void {
   const imageData: ImageData = getImageData();
   const data = imageData.data;
