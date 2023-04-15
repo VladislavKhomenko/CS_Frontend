@@ -6,8 +6,6 @@ class LinkedListNode<T> {
   value: Nullable<T> = null;
 
   constructor(value: T) {
-    this.prev = null;
-    this.next = null;
     this.value = value;
   }
 }
