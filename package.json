@@ -4,7 +4,8 @@
   "description": "homeworks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:homework-2": "npx tsc src/homework-2/canvas/index.ts --watch"
   },
   "repository": {
     "type": "git",
