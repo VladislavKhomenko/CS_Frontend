@@ -3,11 +3,8 @@ type Nullable<T> = T | null;
 class LinkedListNode<T> {
   prev: Nullable<LinkedListNode<T>> = null;
   next: Nullable<LinkedListNode<T>> = null;
-  value: Nullable<T> = null;
 
-  constructor(value: T) {
-    this.value = value;
-  }
+  constructor(readonly value: T) {}
 }
 
 class LinkedList<T> implements Iterable<T> {
