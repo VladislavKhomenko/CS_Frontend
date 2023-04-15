@@ -31,8 +31,6 @@ class LinkedList<T> implements Iterable<T> {
     if (!this.first) {
       this.first = node;
       this.last = node;
-      this.first.next = this.last;
-      this.last.prev = this.first;
 
       return;
     }
