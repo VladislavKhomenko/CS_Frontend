@@ -6,8 +6,8 @@ class Stack {
   private array: TypedArray;
   private length = 0;
 
-  constructor(classConstructor: Type<TypedArray>, readonly size: number) {
-    this.array = new classConstructor(size);
+  constructor(Constructor: Type<TypedArray>, readonly size: number) {
+    this.array = new Constructor(size);
   }
 
   get isEmpty(): boolean {
