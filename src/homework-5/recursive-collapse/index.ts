@@ -3,18 +3,18 @@ function recursiveCollapse(obj: any, key?: string): Record<string, unknown> {
     return { [key!]: obj };
   }
 
-  const toCompressedObject = (
-    compressedObject: Record<string, unknown>,
+  const toCollapsedObject = (
+    collapsedObject: Record<string, unknown>,
     currentKey: string
   ): Record<string, unknown> => {
-    const compressedKey = key !== undefined ? `${key}.${currentKey}` : currentKey;
+    const collapsedKey = key !== undefined ? `${key}.${currentKey}` : currentKey;
     const value = obj[currentKey];
-    const collapsed = recursiveCollapse(value, compressedKey);
+    const collapsed = recursiveCollapse(value, collapsedKey);
 
-    return { ...compressedObject, ...collapsed };
+    return { ...collapsedObject, ...collapsed };
   };
 
-  return Object.keys(obj).reduce(toCompressedObject, {});
+  return Object.keys(obj).reduce(toCollapsedObject, {});
 }
 
 const obj = {
