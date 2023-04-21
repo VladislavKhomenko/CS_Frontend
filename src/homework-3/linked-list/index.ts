@@ -1,49 +1,13 @@
-type Nullable<T> = T | null;
-
-class LinkedListNode<T> {
-  prev: Nullable<LinkedListNode<T>> = null;
-  next: Nullable<LinkedListNode<T>> = null;
-
-  constructor(readonly value: T) {}
-}
-
-class LinkedList<T> implements Iterable<T> {
-  first: Nullable<LinkedListNode<T>> = null;
-  last: Nullable<LinkedListNode<T>> = null;
-
-  *[Symbol.iterator](): Iterator<T> {
-    let current = this.first;
-
-    while (current) {
-      yield current.value!;
-      current = current.next;
-    }
-  }
-
-  add(value: T): void {
-    const node = new LinkedListNode(value);
-
-    if (!this.first) {
-      this.first = node;
-      this.last = node;
-
-      return;
-    }
-
-    node.prev = this.last;
-    this.last!.next = node;
-    this.last = node;
-  }
-}
+import { LinkedList } from '../../shared/classes';
 
 const list = new LinkedList<number>();
 
-list.add(1);
-list.add(2);
-list.add(3);
-list.add(4);
-list.add(5);
-list.add(6);
+list.addFirst(1);
+list.addFirst(2);
+list.addFirst(3);
+list.addFirst(4);
+list.addFirst(5);
+list.addFirst(6);
 
 console.log(list.first!.value); // 1
 console.log(list.last!.value); // 6
