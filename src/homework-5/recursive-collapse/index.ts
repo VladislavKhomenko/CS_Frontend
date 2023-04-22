@@ -3,7 +3,14 @@ function recursiveCollapse(obj: any, key?: string): Record<string, unknown> {
     return { [key!]: obj };
   }
 
-  const toCollapsedObject = (
+  return Object.keys(obj).reduce(collapseObject(obj, key), {});
+}
+
+function collapseObject(
+  obj: any,
+  key?: string
+): (collapsedObject: Record<string, unknown>, currentKey: string) => Record<string, unknown> {
+  return (
     collapsedObject: Record<string, unknown>,
     currentKey: string
   ): Record<string, unknown> => {
@@ -13,8 +20,6 @@ function recursiveCollapse(obj: any, key?: string): Record<string, unknown> {
 
     return { ...collapsedObject, ...collapsed };
   };
-
-  return Object.keys(obj).reduce(toCollapsedObject, {});
 }
 
 const obj = {
