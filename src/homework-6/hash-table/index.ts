@@ -181,7 +181,7 @@ class HashMap<K, V> {
   }
 }
 
-const map = new HashMap(3);
+const map = new HashMap<string | number | object, number>(120);
 
 const a = { a: 1, b: 2 };
 const b = { a: 1, b: 2 };
