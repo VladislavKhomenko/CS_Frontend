@@ -11,11 +11,11 @@ class Matrix2D<T extends Matrix2DConfig> {
     this.height = config.y;
   }
 
-  set(config: T, value: number) {
+  set(config: T, value: number): void {
     this.buffer[this.getIndex(config)] = value;
   }
 
-  get(config: T) {
+  get(config: T): number {
     return this.buffer[this.getIndex(config)];
   }
 

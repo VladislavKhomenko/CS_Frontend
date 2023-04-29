@@ -30,7 +30,7 @@ class HashMap<K, V> {
     return this.size > capacity && this.#buffer.filter(Boolean).length > capacity;
   }
 
-  set(key: K, value: V) {
+  set(key: K, value: V): void {
     const index = this.#getIndex(key);
 
     let currentNode = this.#buffer[index];

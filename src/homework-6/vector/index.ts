@@ -40,7 +40,7 @@ class Vector {
     return item;
   }
 
-  shift() {
+  shift(): number | bigint | undefined {
     if (!this.#length) return undefined;
 
     const item = this.#buffer[this.#startPointer];
@@ -51,7 +51,7 @@ class Vector {
     return item;
   }
 
-  unshift(...rest: number[]) {
+  unshift(...rest: number[]): void {
     this.#resize(rest);
 
     rest.forEach((value: number) => {
