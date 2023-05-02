@@ -4,6 +4,8 @@
   "description": "homeworks",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
+    "watch": "webpack serve",
     "start:homework-2-canvas": "npx tsc src/homework-2/canvas/index.ts --watch",
     "start:homework-2-encode": "npx ts-node src/homework-2/encode/index.ts",
     "start:homework-3-linked-list": "npx ts-node src/homework-3/linked-list/index.ts"
@@ -19,7 +21,12 @@
   },
   "homepage": "https://github.com/VladislavKhomenko/CS_Frontend#readme",
   "devDependencies": {
+    "html-webpack-plugin": "^5.5.1",
+    "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.3",
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-dev-server": "^4.13.3"
   }
 }
