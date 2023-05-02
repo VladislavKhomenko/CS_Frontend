@@ -1,5 +1,4 @@
-import { Nullable } from '../../shared/models';
-import { Type, TypedArray } from './models';
+import { Nullable, Type, TypedArray } from '../../shared/models';
 
 class Stack {
   private array: TypedArray;
