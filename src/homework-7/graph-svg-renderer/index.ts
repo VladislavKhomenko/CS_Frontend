@@ -1,16 +1,17 @@
 import { Graph } from '../graph';
 
 export class GraphSvgRenderer extends Graph {
+  #vertexWidth = 20;
+
   renderSvg(container: HTMLElement, hasWeight = false): void {
     const positionsMap = this.#calculatePositions();
     const svg = this.#createSvg();
     const vertexList = this.vertexList;
 
     for (const vertex of vertexList) {
-      const vertexWidth = 20;
       const { x, y } = positionsMap.get(vertex)!;
-      const vertexcCircle = this.#createVertex(vertex, x, y, vertexWidth);
-      const vertexLabel = this.#createVertexLabel(vertex, x, y, vertexWidth);
+      const vertexcCircle = this.#createVertex(vertex, x, y);
+      const vertexLabel = this.#createVertexLabel(vertex, x, y);
 
       svg.appendChild(vertexcCircle);
       svg.appendChild(vertexLabel);
@@ -78,7 +79,7 @@ export class GraphSvgRenderer extends Graph {
     return svg;
   }
 
-  #createVertex(vertex: string, x: number, y: number, vertexWidth: number): SVGCircleElement {
+  #createVertex(vertex: string, x: number, y: number): SVGCircleElement {
     const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 
     circle.setAttribute('id', vertex);
@@ -86,15 +87,15 @@ export class GraphSvgRenderer extends Graph {
     circle.setAttribute('cy', y.toString());
     circle.setAttribute('fill', 'white');
     circle.setAttribute('stroke', 'black');
-    circle.setAttribute('r', vertexWidth.toString());
+    circle.setAttribute('r', this.#vertexWidth.toString());
 
     return circle;
   }
 
-  #createVertexLabel(vertex: string, x: number, y: number, vertexWidth: number): SVGTextElement {
+  #createVertexLabel(vertex: string, x: number, y: number): SVGTextElement {
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    const textX = x - vertexWidth;
-    const textY = y - vertexWidth;
+    const textX = x - this.#vertexWidth;
+    const textY = y - this.#vertexWidth;
 
     text.setAttribute('x', textX.toString());
     text.setAttribute('y', textY.toString());
