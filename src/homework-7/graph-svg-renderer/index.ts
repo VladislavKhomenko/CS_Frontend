@@ -9,11 +9,11 @@ export class GraphSvgRenderer extends Graph {
     for (const vertex of vertexList) {
       const vertexWidth = 20;
       const { x, y } = positionsMap.get(vertex)!;
-      const circle = this.#createCircle(vertex, x, y, vertexWidth);
-      const text = this.#createText(vertex, x, y, vertexWidth);
+      const vertexcCircle = this.#createVertex(vertex, x, y, vertexWidth);
+      const vertexLabel = this.#createVertexLabel(vertex, x, y, vertexWidth);
 
-      svg.appendChild(circle);
-      svg.appendChild(text);
+      svg.appendChild(vertexcCircle);
+      svg.appendChild(vertexLabel);
     }
 
     for (const vertex of vertexList) {
@@ -78,7 +78,7 @@ export class GraphSvgRenderer extends Graph {
     return svg;
   }
 
-  #createCircle(vertex: string, x: number, y: number, vertexWidth: number): SVGCircleElement {
+  #createVertex(vertex: string, x: number, y: number, vertexWidth: number): SVGCircleElement {
     const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 
     circle.setAttribute('id', vertex);
@@ -91,7 +91,7 @@ export class GraphSvgRenderer extends Graph {
     return circle;
   }
 
-  #createText(vertex: string, x: number, y: number, vertexWidth: number): SVGTextElement {
+  #createVertexLabel(vertex: string, x: number, y: number, vertexWidth: number): SVGTextElement {
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     const textX = x - vertexWidth;
     const textY = y - vertexWidth;
