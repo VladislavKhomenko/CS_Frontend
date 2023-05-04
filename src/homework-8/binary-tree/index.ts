@@ -111,15 +111,15 @@ class BinaryTree<T> {
     const queue = [this.rootNode];
 
     while (queue.length) {
-      const node = queue.shift();
+      const node = queue.shift()!;
 
-      cb(node?.value!);
+      cb(node.value);
 
-      if (node?.left) {
+      if (node.left) {
         queue.push(node.left);
       }
 
-      if (node?.right) {
+      if (node.right) {
         queue.push(node.right);
       }
     }
