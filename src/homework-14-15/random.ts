@@ -5,7 +5,7 @@ export const random = (min: number, max: number): IterableIterator<number> => {
     },
 
     next: (): IteratorResult<number> => {
-      return { done: false, value: Math.floor(Math.random() * (max - min) - min) };
+      return { done: false, value: Math.floor(Math.random() * (max - min) + min) };
     },
   };
 };
