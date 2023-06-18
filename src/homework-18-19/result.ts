@@ -5,11 +5,11 @@ export class Result<T> {
   #error: unknown;
   #data: Nullable<T> = null;
 
-  constructor(cb: () => T) {
+  constructor(cb: () => T, unpack = true) {
     const data = cb();
 
     try {
-      if (data instanceof Result) {
+      if (unpack && data instanceof Result) {
         data.then(this.#setData.bind(this)).catch(this.#setError.bind(this));
       } else {
         this.#setData(data);
@@ -29,6 +29,14 @@ export class Result<T> {
     this.#state = 'Err';
   }
 
+  unwrap(): T | unknown {
+    if (this.#state === 'Err') {
+      return this.#error;
+    }
+
+    return this.#data;
+  }
+
   then<R>(cb: (value: T) => R): Result<T | R> {
     if (this.#state === 'Ok') {
       return new Result(() => cb(this.#data!));
@@ -40,6 +48,22 @@ export class Result<T> {
   catch<R>(cb: (error: unknown) => R): Result<T | R> {
     if (this.#state === 'Err') {
       return new Result(() => cb(this.#error!));
+    }
+
+    return this;
+  }
+
+  map<R>(cb: (value: T) => R): Result<T | R> {
+    if (this.#state === 'Ok') {
+      return new Result(() => cb(this.#data!), false);
+    }
+
+    return this;
+  }
+
+  flatMap<R>(cb: (value: T) => R): Result<T | R> {
+    if (this.#state === 'Ok') {
+      return new Result(() => cb(this.#data!));
     }
 
     return this;
